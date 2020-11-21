@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FC, useState, useCallback } from "react";
+import { dispatcher } from "./store";
+import "./App.css";
+import { IAppProps } from "./types";
+import { CONTAINER_CLICKER_AMOUNT } from "./store/containers";
+import { withState0 } from "./store/with";
 
-function App() {
+const AppComponent: FC<IAppProps> = ({ amount }): JSX.Element => {
+  const handleClick = useCallback(() => {
+    dispatcher.emit(CONTAINER_CLICKER_AMOUNT, { amount: 1 });
+  }, [dispatcher]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <section>
+        <button onClick={handleClick}>Press Me</button>
+      </section>
+      <section>
+        <p>You have pressed me {amount} times.</p>
+      </section>
     </div>
   );
-}
+};
 
-export default App;
+export const App = withState0(
+  dispatcher,
+  AppComponent,
+  CONTAINER_CLICKER_AMOUNT
+);
