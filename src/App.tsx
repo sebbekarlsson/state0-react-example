@@ -1,23 +1,22 @@
-import React, { FC, useCallback, useMemo } from "react";
-import { dispatcher } from "./store";
+import React, { FC, useMemo } from "react";
 import "./App.css";
 import { IAppProps } from "./types";
-import { CONTAINER_CLICKER_AMOUNT } from "./store/containers";
 import { withState0 } from "./store/with";
 import prettyFormat from "pretty-format";
+import { queue } from "./store";
+import { ACTION_CLICK_INCREASE } from "./store/actionTypes";
+import { queueDispatch } from "state0";
 
 const AppComponent: FC<IAppProps> = ({ amount }): JSX.Element => {
-  const handleClick = useCallback(() => {
-    dispatcher.emit(CONTAINER_CLICKER_AMOUNT, { amount: 1 });
-  }, [dispatcher]);
+  const handleClick = () => {
+    queueDispatch(queue, {
+      type: ACTION_CLICK_INCREASE,
+      payload: { amount: 1 },
+    });
+  };
 
-  const raw = useMemo(
-    () =>
-      prettyFormat({
-        state: dispatcher.state,
-      }),
-    [dispatcher.state, dispatcher.listeners]
-  );
+  const state = queue.state;
+  const raw = useMemo(() => state && prettyFormat(queue), [state]);
 
   return (
     <div className="wrapper">
@@ -41,8 +40,4 @@ const AppComponent: FC<IAppProps> = ({ amount }): JSX.Element => {
   );
 };
 
-export const App = withState0(
-  dispatcher,
-  AppComponent,
-  CONTAINER_CLICKER_AMOUNT
-);
+export const App = withState0(queue, AppComponent, ACTION_CLICK_INCREASE);

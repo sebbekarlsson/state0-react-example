@@ -1,17 +1,18 @@
 import React, { FC, useState } from "react";
-import { Dispatcher } from "state0";
-import { IAppProps, IToastState, IToastRemoveAction } from "../types";
+import { queueSubscribe, IQueue } from "state0";
+import { IAppProps, IToastState } from "../types";
 
 export const withState0 = (
-  dispatcher: Dispatcher<IAppProps | IToastState | IToastRemoveAction>,
+  queue: IQueue<IAppProps | IToastState>,
   Component: FC<any>,
   path: string
 ) => {
   const ComponentWrapper: FC<any> = (): JSX.Element => {
     const [props, setProps] = useState({});
-    dispatcher.on(path, (_, nextState: any) => {
-      setProps(nextState);
-    });
+    const subscriber = (data: any) => {
+      setProps({ ...props, ...data });
+    };
+    queueSubscribe(queue, [{ type: path, trigger: subscriber }]);
     Component.defaultProps = props;
     return <Component props={props} />;
   };

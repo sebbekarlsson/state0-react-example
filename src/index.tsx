@@ -1,16 +1,16 @@
-import React, { FC, useEffect } from "react";
+import React /*, { FC, useEffect }*/ from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import { App } from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { registerActions } from "./store/actions";
-import { ToastProvider, useToasts } from "react-toast-notifications";
-import { IToastState } from "./types";
-import { dispatcher } from "./store";
-import { withState0 } from "./store/with";
-import { CONTAINER_TOASTS_REMOVE, CONTAINER_TOASTS } from "./store/containers";
+import { ToastProvider /*, useToasts */ } from "react-toast-notifications";
+import { queueStepNext } from "state0";
+import { queue } from "./store";
+//import { IToastState } from "./types";
+//import { withState0 } from "./store/with";
+//import { CONTAINER_TOASTS_REMOVE, CONTAINER_TOASTS } from "./store/containers";
 
-const ToastConsumerComponent: FC<IToastState> = ({
+/*const ToastConsumerComponent: FC<IToastState> = ({
   toasts = [],
 }): JSX.Element => {
   const { addToast } = useToasts();
@@ -29,13 +29,13 @@ const ToastConsumer = withState0(
   dispatcher,
   ToastConsumerComponent,
   CONTAINER_TOASTS
-);
+);*/
 
 ReactDOM.render(
   <React.StrictMode>
     <ToastProvider autoDismissTimeout={1500}>
       <App />
-      <ToastConsumer />
+      {/* <ToastConsumer /> */}
     </ToastProvider>
   </React.StrictMode>,
   document.getElementById("root")
@@ -45,4 +45,4 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-registerActions();
+queueStepNext(queue);

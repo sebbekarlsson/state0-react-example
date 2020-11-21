@@ -10277,8 +10277,8 @@ stackframe@^1.1.1:
   resolved "https://registry.yarnpkg.com/stackframe/-/stackframe-1.2.0.tgz#52429492d63c62eb989804c11552e3d22e779303"
   integrity sha512-GrdeshiRmS1YLMYgzF16olf2jJ/IzxXY9lhKOskuVziubpTYcYqyOwYeJKzQkwy7uN0fYSsbsC4RQaXf9LCrYA==
 
-"state0@file:../state0":
-  version "1.0.5"
+"state0@file:/home/ianertson/workspace/state0":
+  version "2.0.0"
   dependencies:
     webpack "^5.6.0"
 
