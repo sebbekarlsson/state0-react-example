@@ -14,7 +14,7 @@
 ## With snippet
 
 > To bind props from `state0` to your component, use this snippet.  
-> [See here](src/store/with)
+> [See here](src/store/with.ts)
 
 ### Do not create issues here.
 
