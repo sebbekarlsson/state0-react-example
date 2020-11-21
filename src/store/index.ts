@@ -9,6 +9,3 @@ export const queue = makeQueue<IAppProps | IToastState>(
   [],
   []
 );
-
-// @ts-ignore
-window.queue = queue;

@@ -4,12 +4,12 @@
 
 ## Setting up the store
 
-> The store and the dispatcher is actually just one and the same.  
+> The store is a queue 
 > [See here](src/store/index.ts)
 
-## Registering actions
+## Registering Reducers
 
-> [See here](src/store/actions.ts)
+> [See here](src/store/reducers.ts)
 
 ## With snippet
 
