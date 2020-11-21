@@ -1,9 +1,9 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState } from "react";
 import { Dispatcher } from "state0";
-import { IAppProps } from "../types";
+import { IAppProps, IToastState, IToastRemoveAction } from "../types";
 
 export const withState0 = (
-  dispatcher: Dispatcher<IAppProps>,
+  dispatcher: Dispatcher<IAppProps | IToastState | IToastRemoveAction>,
   Component: FC<any>,
   path: string
 ) => {

@@ -1,4 +1,4 @@
-import React, { FC, useState, useCallback } from "react";
+import React, { FC, useCallback } from "react";
 import { dispatcher } from "./store";
 import "./App.css";
 import { IAppProps } from "./types";
@@ -10,7 +10,7 @@ const AppComponent: FC<IAppProps> = ({ amount }): JSX.Element => {
     dispatcher.emit(CONTAINER_CLICKER_AMOUNT, { amount: 1 });
   }, [dispatcher]);
   return (
-    <div>
+    <div className="wrapper">
       <section>
         <button onClick={handleClick}>Press Me</button>
       </section>

@@ -1,7 +1,9 @@
 import { Dispatcher } from "state0";
-import { IAppProps } from "../types";
+import { IAppProps, IToastState, IToastRemoveAction } from "../types";
 
-export const dispatcher = new Dispatcher<IAppProps>();
+export const dispatcher = new Dispatcher<
+  IAppProps | IToastState | IToastRemoveAction
+>();
 
 // @ts-ignore (just for debugging)
 window.dispatcher = dispatcher;
