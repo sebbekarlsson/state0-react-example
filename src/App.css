@@ -12,10 +12,10 @@ body,
 .wrapper {
   background-color: white;
   width: 80%;
-  max-width: 300px;
-  height: 200px;
+  max-width: 360px;
+  min-height: 200px;
   box-sizing: border-box;
-  padding: 4rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
@@ -23,4 +23,11 @@ body,
 
 .wrapper section {
   flex: 1;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 128px;
+  max-height: 360px;
+  overflow: scroll;
 }
