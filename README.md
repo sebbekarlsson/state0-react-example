@@ -4,7 +4,7 @@
 
 ## Setting up the store
 
-> The store is a queue 
+> The store is a queue
 > [See here](src/store/index.ts)
 
 ## Registering Reducers

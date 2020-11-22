@@ -5,7 +5,8 @@ import { withState0 } from "./store/with";
 import prettyFormat from "pretty-format";
 import { queue } from "./store";
 import { ACTION_CLICK_INCREASE } from "./store/actionTypes";
-import { queueDispatch } from "state0";
+import { queueDispatch, STATE0_DEBUG_LOCALSTORAGE_ACTIONS } from "state0";
+import { REDUCER_CLICK_ROOT } from "./store/reducers";
 
 const AppComponent: FC<IAppProps> = ({ amount }): JSX.Element => {
   const handleClick = () => {
@@ -15,8 +16,10 @@ const AppComponent: FC<IAppProps> = ({ amount }): JSX.Element => {
     });
   };
 
-  const state = queue.state;
-  const raw = useMemo(() => state && prettyFormat(queue), [state]);
+  const actions = window.localStorage.getItem(
+    STATE0_DEBUG_LOCALSTORAGE_ACTIONS
+  );
+  const raw = useMemo(() => prettyFormat(actions), [actions]);
 
   return (
     <div className="wrapper">
@@ -40,4 +43,10 @@ const AppComponent: FC<IAppProps> = ({ amount }): JSX.Element => {
   );
 };
 
-export const App = withState0(queue, AppComponent, ACTION_CLICK_INCREASE);
+export const App = withState0(AppComponent, [
+  {
+    root: REDUCER_CLICK_ROOT,
+    type: ACTION_CLICK_INCREASE,
+    id: "clickComponent",
+  },
+]);
