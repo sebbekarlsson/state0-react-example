@@ -5,7 +5,7 @@ import { withState0 } from "./store/with";
 import prettyFormat from "pretty-format";
 import { queue } from "./store";
 import { ACTION_CLICK_INCREASE } from "./store/actionTypes";
-import { queueDispatch, STATE0_DEBUG_LOCALSTORAGE_ACTIONS } from "state0";
+import { queueDispatch } from "state0";
 import { REDUCER_CLICK_ROOT } from "./store/reducers";
 
 const AppComponent: FC<IAppProps> = ({ amount }): JSX.Element => {
@@ -16,10 +16,8 @@ const AppComponent: FC<IAppProps> = ({ amount }): JSX.Element => {
     });
   };
 
-  const actions = window.localStorage.getItem(
-    STATE0_DEBUG_LOCALSTORAGE_ACTIONS
-  );
-  const raw = useMemo(() => prettyFormat(actions), [actions]);
+  const state = queue.state;
+  const raw = useMemo(() => prettyFormat(state), [state]);
 
   return (
     <div className="wrapper">

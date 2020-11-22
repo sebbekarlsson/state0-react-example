@@ -4,8 +4,6 @@ import "./index.css";
 import { App } from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ToastProvider } from "react-toast-notifications";
-import { queue } from "./store";
-import { queueStart } from "state0";
 import { ToastConsumer } from "./toastConsumer";
 
 ReactDOM.render(
@@ -22,4 +20,3 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-queueStart(queue, true);
